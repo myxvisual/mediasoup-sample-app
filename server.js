@@ -49,10 +49,12 @@ async function runSocketServer() {
     });
 
     socket.on('getRouterRtpCapabilities', (data, callback) => {
+      console.log('getRouterRtpCapabilities');
       callback(mediasoupRouter.rtpCapabilities);
     });
 
     socket.on('createProducerTransport', async (data, callback) => {
+      console.log('createProducerTransport');
       try {
         const { transport, params } = await createWebRtcTransport();
         producerTransport = transport;
@@ -64,6 +66,7 @@ async function runSocketServer() {
     });
 
     socket.on('createConsumerTransport', async (data, callback) => {
+      console.log('createProducerTranscreateConsumerTransportport');
       try {
         const { transport, params } = await createWebRtcTransport();
         consumerTransport = transport;
@@ -75,16 +78,19 @@ async function runSocketServer() {
     });
 
     socket.on('connectProducerTransport', async (data, callback) => {
+      console.log('connectProducerTransport');
       await producerTransport.connect({ dtlsParameters: data.dtlsParameters });
       callback();
     });
 
     socket.on('connectConsumerTransport', async (data, callback) => {
+      console.log('connectConsumerTransport');
       await consumerTransport.connect({ dtlsParameters: data.dtlsParameters });
       callback();
     });
 
     socket.on('produce', async (data, callback) => {
+      console.log('produce');
       const {kind, rtpParameters} = data;
       producer = await producerTransport.produce({ kind, rtpParameters });
       callback({ id: producer.id });

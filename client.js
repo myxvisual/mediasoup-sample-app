@@ -42,6 +42,8 @@ async function connect() {
     transports: ['websocket'],
   };
 
+  
+  // const serverUrl = `https://italc.com:${config.listenPort}`;
   const serverUrl = `https://${hostname}:${config.listenPort}`;
   socket = socketClient(serverUrl, opts);
   socket.request = socketPromise(socket);
@@ -126,6 +128,7 @@ async function publish(e) {
       break;
 
       case 'connected':
+        console.error(stream);
         document.querySelector('#local_video').srcObject = stream;
         $txtPublish.innerHTML = 'published';
         $fsPublish.disabled = true;

@@ -4,19 +4,22 @@
   "description": "Mediasoup Sample App",
   "main": "server.js",
   "scripts": {
-    "build:client": "browserify client.js -o app-bundle.js",
+    "dev": "watchify client.js -o app-bundle.js",
+    "build": "browserify client.js -o app-bundle.js",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "browserify": "^16.5.0",
     "express": "^4.16.4",
     "mediasoup": "3",
-    "mediasoup-client": "3",
+    "mediasoup-client": "^3.6.2",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
-    "requirejs": "^2.3.6"
+    "requirejs": "^2.3.6",
+    "watchify": "^3.11.1"
   }
 }
